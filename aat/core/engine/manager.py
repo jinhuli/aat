@@ -128,8 +128,11 @@ class StrategyManager(EventHandler):
         # was this trade allowed?
         if approved:
             # send to be executed
-            await self._order_mgr.newOrder(strategy, order)
-            return ret
+            try:
+                await self._order_mgr.newOrder(strategy, order)
+                return ret
+            except:
+                pass       
 
         # raise onRejected
         self._engine.pushEvent(Event(type=Event.Types.REJECTED, target=order))

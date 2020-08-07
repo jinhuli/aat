@@ -169,13 +169,14 @@ class InteractiveBrokersExchange(Exchange):
         ibcontract, iborder = _constructContractAndOrder(order)
 
         # send to IB
+        print("contract: {}\norder: {}".format(ibcontract, iborder))
         id = self._api.placeOrder(ibcontract, iborder)
 
         # update order id
         order.id = id
         self._orders[order.id] = order
 
-    async def cancelOrder(self, order: Order):
+    async def cancel(self, order: Order):
         '''cancel a previously submitted order to the exchange.
 
         For MarketData-only, can just return None

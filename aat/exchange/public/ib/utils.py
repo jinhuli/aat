@@ -82,13 +82,13 @@ def _constructContract(instrument):
         contract.exchange = instrument.brokerExchange or "SMART"
 
         leg1 = ComboLeg()
-        leg1.conId = instrument.brokerId
+        leg1.conId = instrument.leg1.brokerId
         leg1.ratio = 1  # TODO
         leg1.action = instrument.leg1_side
         leg1.exchange = instrument.brokerExchange or "SMART"
 
         leg2 = ComboLeg()
-        leg2.conId = instrument.brokerId  # MCD STK
+        leg2.conId = instrument.leg2.brokerId  # MCD STK
         leg2.ratio = 1  # TODO
         leg2.action = instrument.leg2_side
         leg2.exchange = instrument.brokerExchange or "SMART"
