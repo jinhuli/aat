@@ -76,7 +76,7 @@ def _constructContract(instrument):
         contract.currency = (instrument.currency.name if instrument.currency else '') or "USD"
 
     elif instrument.type == InstrumentType.SPREAD:
-        contract.symbol = instrument.name
+        contract.symbol = instrument.leg1.name[:2]
         contract.secType = "BAG"
         contract.currency = (instrument.currency.name if instrument.currency else '') or "USD"
         contract.exchange = instrument.brokerExchange or "SMART"
